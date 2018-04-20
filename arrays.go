@@ -6,6 +6,10 @@ type Array struct {
 	Data interface{}
 }
 
+func Arr(data interface{}) Array {
+	return Array{data}
+}
+
 func (a Array) isValid() bool {
 	switch Data := reflect.ValueOf(a.Data).Kind(); Data {
 	case reflect.Map, reflect.Slice, reflect.Array:

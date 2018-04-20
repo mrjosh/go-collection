@@ -7,7 +7,7 @@ import (
 
 func TestValidArray(test *testing.T) {
 
-	Arr := Array{"test"}
+	Arr := Arr("test")
 	assert.False(test, Arr.isValid())
 
 	Arr = Array{true}
