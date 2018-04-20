@@ -40,7 +40,9 @@ func (a Array) Index(key int) interface{} {
 
 func (a Array) Exists(key string) bool {
 	if a.isValid() {
-		if a.Get(key) != nil { return true }
+		if a.Get(key) != nil {
+			return true
+		}
 	}
 	return false
 }
@@ -62,7 +64,7 @@ func (a Array) Last() interface{} {
 		switch arrayData := reflect.ValueOf(a.Data); arrayData.Kind() {
 		case reflect.Map:
 			lastKey := len(arrayData.MapKeys())
-			return a.Get(arrayData.MapKeys()[lastKey - 1].Interface())
+			return a.Get(arrayData.MapKeys()[lastKey-1].Interface())
 		case reflect.Slice:
 			return a.Index(arrayData.Len() - 1)
 		}
@@ -70,9 +72,9 @@ func (a Array) Last() interface{} {
 	return nil
 }
 
-func (a Array) Only(values... string) interface{} {
+func (a Array) Only(values ...string) interface{} {
 	if a.isValid() {
-		dataValues := map[interface{}] interface {} {}
+		dataValues := map[interface{}]interface{}{}
 		for _, key := range values {
 			if value := a.Get(key); value != nil {
 				dataValues[key] = value
@@ -83,9 +85,9 @@ func (a Array) Only(values... string) interface{} {
 	return nil
 }
 
-func (a Array) AddMap(key interface{},value interface{}) Array {
+func (a Array) AddMap(key interface{}, value interface{}) Array {
 	arrayData := reflect.ValueOf(a.Data)
-	arrayData.SetMapIndex(reflect.ValueOf(key),reflect.ValueOf(value))
+	arrayData.SetMapIndex(reflect.ValueOf(key), reflect.ValueOf(value))
 	a.Data = arrayData.Interface()
 	return a
 }
