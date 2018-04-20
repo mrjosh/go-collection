@@ -1,19 +1,24 @@
 package arrays
 
+// using reflect package for manage array data
 import "reflect"
 
+// create a type of array with array data
 type Arr struct {
 	Data interface{}
 }
 
+// make a new instance from Arr type
 func Array(data interface{}) Arr {
 	return Arr{data}
 }
 
+// get data from array type
 func (a Arr) GetData() interface{} {
 	return a.Data
 }
 
+// check valid data from data
 func (a Arr) isValid() bool {
 	switch Data := reflect.ValueOf(a.GetData()).Kind(); Data {
 	case reflect.Map, reflect.Slice, reflect.Array:
@@ -23,6 +28,7 @@ func (a Arr) isValid() bool {
 	}
 }
 
+// get a index from map array data
 func (a Arr) Get(key interface{}) interface{} {
 	if a.isValid() {
 		switch arrayData := reflect.ValueOf(a.GetData()); arrayData.Kind() {
@@ -35,6 +41,7 @@ func (a Arr) Get(key interface{}) interface{} {
 	return nil
 }
 
+// get index from slice array data
 func (a Arr) Index(key int) interface{} {
 	if a.isValid() {
 		arrayData := reflect.ValueOf(a.GetData())
@@ -45,6 +52,7 @@ func (a Arr) Index(key int) interface{} {
 	return nil
 }
 
+// check exists index of array data
 func (a Arr) Exists(key string) bool {
 	if a.isValid() {
 		if a.Get(key) != nil {
@@ -54,6 +62,7 @@ func (a Arr) Exists(key string) bool {
 	return false
 }
 
+// get first index of array data
 func (a Arr) First() interface{} {
 	if a.isValid() {
 		switch arrayData := reflect.ValueOf(a.GetData()); arrayData.Kind() {
@@ -66,6 +75,7 @@ func (a Arr) First() interface{} {
 	return nil
 }
 
+// get last index from array data
 func (a Arr) Last() interface{} {
 	if a.isValid() {
 		switch arrayData := reflect.ValueOf(a.GetData()); arrayData.Kind() {
@@ -79,6 +89,7 @@ func (a Arr) Last() interface{} {
 	return nil
 }
 
+// get only keys need in one array in return
 func (a Arr) Only(values ...string) interface{} {
 	if a.isValid() {
 		dataValues := map[interface{}]interface{}{}
@@ -92,6 +103,7 @@ func (a Arr) Only(values ...string) interface{} {
 	return nil
 }
 
+// add a map into array data
 func (a Arr) AddMap(key interface{}, value interface{}) Arr {
 	arrayData := reflect.ValueOf(a.GetData())
 	arrayData.SetMapIndex(reflect.ValueOf(key), reflect.ValueOf(value))
@@ -99,6 +111,7 @@ func (a Arr) AddMap(key interface{}, value interface{}) Arr {
 	return a
 }
 
+// check array has key in slice and map array data
 func (a Arr) Has(key string) bool {
 	if a.isValid() {
 		switch arrayData := reflect.ValueOf(a.GetData()); arrayData.Kind() {
