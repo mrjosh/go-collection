@@ -10,8 +10,12 @@ func Arr(data interface{}) Array {
 	return Array{data}
 }
 
+func (a Array) GetData() interface{} {
+	return a.Data
+}
+
 func (a Array) isValid() bool {
-	switch Data := reflect.ValueOf(a.Data).Kind(); Data {
+	switch Data := reflect.ValueOf(a.GetData()).Kind(); Data {
 	case reflect.Map, reflect.Slice, reflect.Array:
 		return true
 	default:
@@ -21,8 +25,7 @@ func (a Array) isValid() bool {
 
 func (a Array) Get(key interface{}) interface{} {
 	if a.isValid() {
-		arrayData := reflect.ValueOf(a.Data)
-		switch arrayData.Kind() {
+		switch arrayData := reflect.ValueOf(a.GetData()); arrayData.Kind() {
 		case reflect.Map:
 			if value := arrayData.MapIndex(reflect.ValueOf(key)); value.IsValid() {
 				return value.String()
@@ -34,7 +37,7 @@ func (a Array) Get(key interface{}) interface{} {
 
 func (a Array) Index(key int) interface{} {
 	if a.isValid() {
-		arrayData := reflect.ValueOf(a.Data)
+		arrayData := reflect.ValueOf(a.GetData())
 		if value := arrayData.Index(key); value.IsValid() {
 			return value.String()
 		}
@@ -53,7 +56,7 @@ func (a Array) Exists(key string) bool {
 
 func (a Array) First() interface{} {
 	if a.isValid() {
-		switch arrayData := reflect.ValueOf(a.Data); arrayData.Kind() {
+		switch arrayData := reflect.ValueOf(a.GetData()); arrayData.Kind() {
 		case reflect.Map:
 			return a.Get(arrayData.MapKeys()[0].Interface())
 		case reflect.Slice:
@@ -65,7 +68,7 @@ func (a Array) First() interface{} {
 
 func (a Array) Last() interface{} {
 	if a.isValid() {
-		switch arrayData := reflect.ValueOf(a.Data); arrayData.Kind() {
+		switch arrayData := reflect.ValueOf(a.GetData()); arrayData.Kind() {
 		case reflect.Map:
 			lastKey := len(arrayData.MapKeys())
 			return a.Get(arrayData.MapKeys()[lastKey-1].Interface())
@@ -90,7 +93,7 @@ func (a Array) Only(values ...string) interface{} {
 }
 
 func (a Array) AddMap(key interface{}, value interface{}) Array {
-	arrayData := reflect.ValueOf(a.Data)
+	arrayData := reflect.ValueOf(a.GetData())
 	arrayData.SetMapIndex(reflect.ValueOf(key), reflect.ValueOf(value))
 	a.Data = arrayData.Interface()
 	return a
@@ -98,8 +101,7 @@ func (a Array) AddMap(key interface{}, value interface{}) Array {
 
 func (a Array) Has(key string) bool {
 	if a.isValid() {
-		arrayData := reflect.ValueOf(a.Data)
-		switch arrayData.Kind() {
+		switch arrayData := reflect.ValueOf(a.GetData()); arrayData.Kind() {
 		case reflect.Slice:
 			for i := 0; i < arrayData.Len(); i++ {
 				if arrayData.Index(i).String() == key {
