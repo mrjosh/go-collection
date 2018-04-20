@@ -1,4 +1,4 @@
-package support
+package arrays
 
 import (
 	"github.com/stretchr/testify/assert"
