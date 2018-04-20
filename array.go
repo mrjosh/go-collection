@@ -21,7 +21,7 @@ func (a Array) Get(key interface{}) interface{} {
 		switch arrayData.Kind() {
 		case reflect.Map:
 			if value := arrayData.MapIndex(reflect.ValueOf(key)); value.IsValid() {
-				return value
+				return value.String()
 			}
 		}
 	}
@@ -32,7 +32,7 @@ func (a Array) Index(key int) interface{} {
 	if a.isValid() {
 		arrayData := reflect.ValueOf(a.Data)
 		if value := arrayData.Index(key); value.IsValid() {
-			return value
+			return value.String()
 		}
 	}
 	return nil
