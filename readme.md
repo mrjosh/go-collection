@@ -13,6 +13,7 @@ This package is provided to be used on golang and it gives clean methods to hand
 
 ## Install
 Run this commands
+
     $ go get github.com/goshco/arrays
 
 ## License
