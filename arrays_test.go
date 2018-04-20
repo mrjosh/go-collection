@@ -1,4 +1,4 @@
-package arrays
+package support
 
 import (
 	"github.com/stretchr/testify/assert"
@@ -7,19 +7,19 @@ import (
 
 func TestValidArray(test *testing.T) {
 
-	Arr := Arr("test")
+	Arr := Array("test")
 	assert.False(test, Arr.isValid())
 
-	Arr = Array{true}
+	Arr = Array(true)
 	assert.False(test, Arr.isValid())
 
-	Arr = Array{1.2}
+	Arr = Array(1.2)
 	assert.False(test, Arr.isValid())
 }
 
 func TestMapArray(test *testing.T) {
 
-	Arr := Array{map[string]string{"key1": "value1", "key2": "value2"}}
+	Arr := Array(map[string]string{"key1": "value1", "key2": "value2"})
 
 	assert.True(test, Arr.Exists("key1"))
 	assert.Equal(test, "value1", Arr.Get("key1"))
@@ -30,7 +30,7 @@ func TestMapArray(test *testing.T) {
 
 func TestSliceArray(test *testing.T) {
 
-	Arr := Array{[]string{"key1", "key2"}}
+	Arr := Array([]string{"key1", "key2"})
 
 	assert.True(test, Arr.Has("key1"))
 	assert.Equal(test, "key1", Arr.Index(0))
