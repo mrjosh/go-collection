@@ -20,7 +20,7 @@ Run this commands
 ## Basic Usage
 You must to import the package name 
 ```go
-import "arrays"
+import "github.com/goshco/arrays"
 ```
 You also need fmt package to print results in console
 ```go
@@ -34,6 +34,10 @@ arr := arrays.Array(data)
 
 // example:
 fmt.Println(arr.Has("say"))
+// return true
+
+fmt.Println(arr.Get("say"))
+// return "hello"
 ```
 
 ## License
