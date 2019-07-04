@@ -15,13 +15,13 @@ This package is provided to be used on golang and it gives clean methods to hand
 ## Install
 Run this commands
 
-    $ go get github.com/goshco/arrays
+    $ go get github.com/MrJoshLab/go-collection
 
 ## Basic Usage
 You must to import the package name 
 ```go
 import (
-    collection "github.com/goshco/go-collection"
+    collection "github.com/MrJoshLab/go-collection"
 )
 ```
 You also need fmt package to print results in console

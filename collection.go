@@ -11,7 +11,7 @@ type Collection struct {
 	Data interface{}
 }
 
-// make a new instance from Arr type
+// make a new instance from Collection type
 func New(data interface{}) *Collection {
 	return &Collection{data}
 }
