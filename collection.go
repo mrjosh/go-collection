@@ -1,4 +1,4 @@
-package main
+package collection
 
 // using reflect package for manage array data
 import (
@@ -12,7 +12,7 @@ type Collection struct {
 }
 
 // make a new instance from Arr type
-func NewCollection(data interface{}) *Collection {
+func New(data interface{}) *Collection {
 	return &Collection{data}
 }
 

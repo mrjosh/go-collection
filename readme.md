@@ -20,7 +20,9 @@ Run this commands
 ## Basic Usage
 You must to import the package name 
 ```go
-import "github.com/goshco/arrays"
+import (
+    collection "github.com/goshco/go-collection"
+)
 ```
 You also need fmt package to print results in console
 ```go
@@ -30,13 +32,13 @@ import "fmt"
 The following illustrates how you can use Array type or function to use methods.
 ```go
 data := map[string] string { "say": "hello" }
-arr := arrays.Array(data)
+c := collection.New(data)
 
 // example:
-fmt.Println(arr.Has("say"))
+fmt.Println(c.Has("say"))
 // return true
 
-fmt.Println(arr.Get("say"))
+fmt.Println(c.Get("say"))
 // return "hello"
 ```
 

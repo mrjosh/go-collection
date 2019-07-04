@@ -1,4 +1,4 @@
-package main
+package collection
 
 import (
 	"github.com/stretchr/testify/assert"
@@ -7,19 +7,19 @@ import (
 
 func TestValidCollection(test *testing.T) {
 
-	Arr := NewCollection("test")
+	Arr := New("test")
 	assert.False(test, Arr.IsValid())
 
-	Arr = NewCollection(true)
+	Arr = New(true)
 	assert.False(test, Arr.IsValid())
 
-	Arr = NewCollection(1.2)
+	Arr = New(1.2)
 	assert.False(test, Arr.IsValid())
 }
 
 func TestMapCollection(test *testing.T) {
 
-	Arr := NewCollection(map[string]string{"key1": "value1", "key2": "value2"})
+	Arr := New(map[string]string{"key1": "value1", "key2": "value2"})
 
 	assert.True(test, Arr.Exists("key1"))
 	assert.Equal(test, "value1", Arr.Get("key1"))
@@ -34,7 +34,7 @@ func TestMapCollection(test *testing.T) {
 
 func TestSliceCollection(test *testing.T) {
 
-	Arr := NewCollection([]string{"key1", "key2"})
+	Arr := New([]string{"key1", "key2"})
 
 	assert.True(test, Arr.Has("key1"))
 	assert.Equal(test, "key1", Arr.Index(0))
@@ -54,7 +54,7 @@ func TestStructCollection(test *testing.T) {
 		map[string]string{"field1": "result"},
 	}
 
-	s := NewCollection(mockStrcut)
+	s := New(mockStrcut)
 
 	assert.True(test, s.Has("Field1"))
 	assert.Equal(test, "field1", s.Get("Field1"))
@@ -64,7 +64,7 @@ func TestStructCollection(test *testing.T) {
 }
 
 func TestJsonCollection(test *testing.T) {
-	c := NewCollection([]string{"index1", "index2"})
+	c := New([]string{"index1", "index2"})
 	assert.Equal(test, "[\"index1\",\"index2\"]", c.ToJson())
 	assert.Equal(test, []byte(c.ToJson()), c.ToBytes())
 }
