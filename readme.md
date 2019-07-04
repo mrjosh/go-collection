@@ -1,4 +1,3 @@
-[![Build Status](https://circleci.com/gh/goshco/arrays.svg?&style=shield)](https://circleci.com/gh/goshco/arrays)
 [![Go Report](https://goreportcard.com/badge/github.com/goshco/arrays)](https://goreportcard.com/report/github.com/goshco/arrays)
 [![License](https://img.shields.io/:license-mit-blue.svg?style=flat-square)](#license)
 [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/iamalirezaj)
@@ -7,7 +6,7 @@
 This package is provided to be used on golang and it gives clean methods to handle arrays.
 
 # Requirement
-* Golang 1.10
+* Golang 1.12.x: keep your compiler up to date :)
 * reflect
 
 **The package is in process.**
